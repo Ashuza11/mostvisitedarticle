@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
     },
 });
 
-const fetchMostVisitedArticlesData = async ({ country, access, year, month, day }) => {
+const fetchMostVisitedArticlesData = async ({ country, access, year, month, day, t }) => {
     try {
         const formattedMonth = month.padStart(2, '0');
         const formattedDay = day.padStart(2, '0');
@@ -15,7 +15,7 @@ const fetchMostVisitedArticlesData = async ({ country, access, year, month, day 
 
         return await axiosInstance.get(apiUrl);
     } catch (error) {
-        toast.error('Aucune donnée trouvée pour les paramètres passées', {
+        toast.info(t('common.noResultsForFilters'), {
             autoClose: 5000,
             position: 'bottom-center',
             hideProgressBar: true,
